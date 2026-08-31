@@ -1,18 +1,13 @@
-import os
-from dotenv import load_dotenv
 from google import genai
 
-load_dotenv()
+client = genai()
 
-def run() -> None:
-    client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
+response = client.chat.completions.create(
+    model="gemini-3.6-flash",
+    messages =[
+        {"role": "user", "content": "Explain what an AI agent is in one sentence"},
+    ],
+)
 
-    response = client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents="Explain what an AI agent is in one sentence",
-    )
+print(response.choices[0].message.content)
 
-    print(response.text)
-
-if __name__ == "__main__":
-    run()
