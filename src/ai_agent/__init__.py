@@ -1,2 +1,2 @@
 def main() -> None:
-    print("Hello from ai-agent!")
+    print("AI Agent package")
