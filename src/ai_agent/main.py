@@ -1,13 +1,14 @@
 from google import genai
+from dotenv import load_dotenv
+import os
 
-client = genai()
+load_dotenv()
 
-response = client.chat.completions.create(
-    model="gemini-3.6-flash",
-    messages =[
-        {"role": "user", "content": "Explain what an AI agent is in one sentence"},
-    ],
+client = genai.Client()
+
+response = client.models.generate_content(
+    model="gemini-2.5-flash",
+    contents="Explain what an AI agent is in one sentence",
 )
 
-print(response.choices[0].message.content)
-
+print(response.text)
