@@ -6,21 +6,14 @@ load_dotenv()
 
 client = genai.Client()
 
-messages = []
+chat = client.chats.create(model="gemini-3.5-flash-lite")
 
 while True:
     user_input = input("You: ")
     if user_input.strip().lower() in ("exit", "quit"):
         break
-    
 
-    messages.append({"role": "user", "content": user_input})
-
-    response = client.chat.completion.create(
-        model="gemini-3.6-flash",
-        messages=messages,
-    )
-
-    reply = response.choices[0].messages.content
-    messages.append({"role": "assistant", "content": reply})
-    print("Bot: ", reply)
+    print("Bot: ", end="", flush=True)
+    for chunk in chat.send_message_stream(user_input):
+        print(chunk.text, end="", flush=True)
+    print()
