@@ -1,13 +1,15 @@
+from httpx._transports.asgi import _Message
 from google import genai
 from dotenv import load_dotenv
 import os
+
 
 load_dotenv()
 
 client = genai.Client()
 
 response = client.models.generate_content(
-    model="gemini-2.5-flash",
+    model="gemini-3.6-flash",
     contents="Explain what an AI agent is in one sentence",
 )
 
