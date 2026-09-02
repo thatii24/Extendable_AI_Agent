@@ -1,0 +1,2 @@
+This project is an AI Agent built with Google Gemini SDK.
+It supports single prompts, multi-turn chat, and tool/function calling to interact with files.
